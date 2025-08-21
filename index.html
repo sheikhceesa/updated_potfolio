@@ -626,6 +626,8 @@
         .profile-section {
             background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
             text-align: center;
+            overflow-y: auto;
+            
         }
         
         body.dark-mode .profile-section {
@@ -857,7 +859,7 @@
             transform: translateY(-2px);
         }
         
-        /* Projects Section */
+        /* Projects Section - MODIFIED FOR VERTICAL SCROLLING */
         .projects {
             background: var(--white);
             overflow: hidden;
@@ -880,6 +882,19 @@
         .projects-container {
             position: relative;
             z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .projects-header {
+            flex-shrink: 0;
+        }
+        
+        .projects-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 40px;
         }
         
         .projects-grid {
@@ -1440,6 +1455,7 @@
             display: flex;
             gap: 15px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
         
         .social-links a {
@@ -1579,6 +1595,7 @@
             justify-content: center;
             gap: 20px;
             margin-bottom: 30px;
+            flex-wrap: wrap;
         }
         
         .footer-social a {
@@ -1853,6 +1870,15 @@
             .nav-dot::after {
                 display: none;
             }
+            
+            /* Projects section adjustments for mobile */
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-card {
+                max-width: 100%;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1874,6 +1900,8 @@
             
             .skills-tabs {
                 justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
             }
             
             .contact-form {
@@ -1936,6 +1964,12 @@
                 right: 20px;
                 width: 50px;
                 height: 50px;
+            }
+            
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -2305,123 +2339,127 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- Projects Section - MODIFIED FOR VERTICAL SCROLLING -->
         <section class="section projects" id="projects">
             <div class="container projects-container">
-                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                </div>
                 
-                <div class="projects-grid">
-                    <div class="project-card" data-project="water-pump">
-                        <div class="project-img img-loading">
-                            <img src="images/waterpomping.png" alt="Water Pump Station" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-cog fa-3x\'></i></div>'">
-                        </div>
-                        <div class="project-info">
-                            <h3>Automated Water Pump Station</h3>
-                            <p>Designed and implemented an automated control system for remote monitoring and control of water pump stations, reducing manual intervention by 80% and improving response time to system anomalies.</p>
-                            <div class="tech-tags">
-                                <span>Python</span>
-                                <span>TIA Portal</span>
-                                <span>Unity Pro</span>
-                                <span>SCADA</span>
+                <div class="projects-content">
+                    <div class="projects-grid">
+                        <div class="project-card" data-project="water-pump">
+                            <div class="project-img img-loading">
+                                <img src="images/waterpomping.png" alt="Water Pump Station" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-cog fa-3x\'></i></div>'">
                             </div>
-                            <div class="project-links">
-                                <a href="#" class="view-project" data-project="water-pump"><i class="fas fa-eye"></i> View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card" data-project="robot-control">
-                        <div class="project-img img-loading">
-                            <img src="images/controle.png" alt="Industrial Robot" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-robot fa-3x\'></i></div>'">
-                        </div>
-                        <div class="project-info">
-                            <h3>Industrial Robot Control System</h3>
-                            <p>Developed advanced control systems for industrial robots using Modbus TCP/IP and Python, achieving 30% improvement in operational precision and enabling seamless integration with existing production lines.</p>
-                            <div class="tech-tags">
-                                <span>Python</span>
-                                <span>Modbus TCP/IP</span>
-                                <span>Robotics</span>
-                                <span>ROS</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="view-project" data-project="robot-control"><i class="fas fa-eye"></i> View Details</a>
+                            <div class="project-info">
+                                <h3>Automated Water Pump Station</h3>
+                                <p>Designed and implemented an automated control system for remote monitoring and control of water pump stations, reducing manual intervention by 80% and improving response time to system anomalies.</p>
+                                <div class="tech-tags">
+                                    <span>Python</span>
+                                    <span>TIA Portal</span>
+                                    <span>Unity Pro</span>
+                                    <span>SCADA</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="view-project" data-project="water-pump"><i class="fas fa-eye"></i> View Details</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="project-card" data-project="static-converters">
-                        <div class="project-img img-loading">
-                            <img src="images/static.png" alt="static converters" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-bolt fa-3x\'></i></div>'">
-                        </div>
-                        <div class="project-info">
-                            <h3>Static Power Simulations</h3>
-                            <p>Simulating the different electrical converting methods: Rectifiers AC to DC, Inverters DC to AC, Dimmer AC to AC, Chopper DC to DC</p>
-                            <div class="tech-tags">
-                                <span>PSIM</span>
-                                <span>MATLAB/Simulink + Simscape Electrical</span>
-                                <span>Multisim</span>
-                                <span>PLECS</span>
+                        
+                        <div class="project-card" data-project="robot-control">
+                            <div class="project-img img-loading">
+                                <img src="images/controle.png" alt="Industrial Robot" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-robot fa-3x\'></i></div>'">
                             </div>
-                            <div class="project-links">
-                                <a href="#" class="view-project" data-project="static-converters"><i class="fas fa-eye"></i> View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card" data-project="vr-simulation">
-                        <div class="project-img img-loading">
-                            <img src="images/VR.jpg" alt="VR Simulation" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-vr-cardboard fa-3x\'></i></div>'">
-                        </div>
-                        <div class="project-info">
-                            <h3>VR Simulation for Process Control</h3>
-                            <p>Created an immersive Virtual Reality environment to simulate and optimize industrial processes, reducing training time by 40% and enabling operators to practice complex procedures in a risk-free setting.</p>
-                            <div class="tech-tags">
-                                <span>Unity 3D</span>
-                                <span>C#</span>
-                                <span>VR Development</span>
-                                <span>3D Modeling</span>
-                                <span>Blender</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="view-project" data-project="vr-simulation"><i class="fas fa-eye"></i> View Details</a>
+                            <div class="project-info">
+                                <h3>Industrial Robot Control System</h3>
+                                <p>Developed advanced control systems for industrial robots using Modbus TCP/IP and Python, achieving 30% improvement in operational precision and enabling seamless integration with existing production lines.</p>
+                                <div class="tech-tags">
+                                    <span>Python</span>
+                                    <span>Modbus TCP/IP</span>
+                                    <span>Robotics</span>
+                                    <span>ROS</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="view-project" data-project="robot-control"><i class="fas fa-eye"></i> View Details</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="project-card" data-project="predictive-maintenance">
-                        <div class="project-img img-loading">
-                            <img src="images/Predictive-Maintenance.jpg" alt="Machine Learning" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-brain fa-3x\'></i></div>'">
-                        </div>
-                        <div class="project-info">
-                            <h3>Predictive Maintenance with ML</h3>
-                            <p>Developed a machine learning model to predict equipment failures in industrial settings, achieving 92% accuracy in failure prediction and reducing unplanned downtime by 35%.</p>
-                            <div class="tech-tags">
-                                <span>Python</span>
-                                <span>TensorFlow</span>
-                                <span>IoT</span>
-                                <span>Time Series</span>
+                        
+                        <div class="project-card" data-project="static-converters">
+                            <div class="project-img img-loading">
+                                <img src="images/static.png" alt="static converters" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-bolt fa-3x\'></i></div>'">
                             </div>
-                            <div class="project-links">
-                                <a href="#" class="view-project" data-project="predictive-maintenance"><i class="fas fa-eye"></i> View Details</a>
+                            <div class="project-info">
+                                <h3>Static Power Simulations</h3>
+                                <p>Simulating the different electrical converting methods: Rectifiers AC to DC, Inverters DC to AC, Dimmer AC to AC, Chopper DC to DC</p>
+                                <div class="tech-tags">
+                                    <span>PSIM</span>
+                                    <span>MATLAB/Simulink + Simscape Electrical</span>
+                                    <span>Multisim</span>
+                                    <span>PLECS</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="view-project" data-project="static-converters"><i class="fas fa-eye"></i> View Details</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        
+                        <div class="project-card" data-project="vr-simulation">
+                            <div class="project-img img-loading">
+                                <img src="images/VR.jpg" alt="VR Simulation" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-vr-cardboard fa-3x\'></i></div>'">
+                            </div>
+                            <div class="project-info">
+                                <h3>VR Simulation for Process Control</h3>
+                                <p>Created an immersive Virtual Reality environment to simulate and optimize industrial processes, reducing training time by 40% and enabling operators to practice complex procedures in a risk-free setting.</p>
+                                <div class="tech-tags">
+                                    <span>Unity 3D</span>
+                                    <span>C#</span>
+                                    <span>VR Development</span>
+                                    <span>3D Modeling</span>
+                                    <span>Blender</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="view-project" data-project="vr-simulation"><i class="fas fa-eye"></i> View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card" data-project="predictive-maintenance">
+                            <div class="project-img img-loading">
+                                <img src="images/Predictive-Maintenance.jpg" alt="Machine Learning" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-brain fa-3x\'></i></div>'">
+                            </div>
+                            <div class="project-info">
+                                <h3>Predictive Maintenance with ML</h3>
+                                <p>Developed a machine learning model to predict equipment failures in industrial settings, achieving 92% accuracy in failure prediction and reducing unplanned downtime by 35%.</p>
+                                <div class="tech-tags">
+                                    <span>Python</span>
+                                    <span>TensorFlow</span>
+                                    <span>IoT</span>
+                                    <span>Time Series</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="view-project" data-project="predictive-maintenance"><i class="fas fa-eye"></i> View Details</a>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="project-card" data-project="driver-assistance">
-                        <div class="project-img img-loading">
-                            <img src="images/driver.png" alt="Machine Learning" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-car fa-3x\'></i></div>'">
-                        </div>
-                        <div class="project-info">
-                            <h3>Driver Assistance</h3>
-                            <p>Design an intelligent system that senses when drivers are feeling fatigued or low, and proactively encourages them to take a restorative break—helping them stay sharp, safe, and in control on the road.</p>
-                            <div class="tech-tags">
-                                <span>Python</span>
-                                <span>TensorFlow</span>
-                                <span>Media Pipe</span>
-                                <span>OpenCV</span>
+                        <div class="project-card" data-project="driver-assistance">
+                            <div class="project-img img-loading">
+                                <img src="images/driver.png" alt="Machine Learning" onload="this.parentElement.classList.remove('img-loading')" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-car fa-3x\'></i></div>'">
                             </div>
-                            <div class="project-links">
-                                <a href="#" class="view-project" data-project="driver-assistance"><i class="fas fa-eye"></i> View Details</a>
+                            <div class="project-info">
+                                <h3>Driver Assistance</h3>
+                                <p>Design an intelligent system that senses when drivers are feeling fatigued or low, and proactively encourages them to take a restorative break—helping them stay sharp, safe, and in control on the road.</p>
+                                <div class="tech-tags">
+                                    <span>Python</span>
+                                    <span>TensorFlow</span>
+                                    <span>Media Pipe</span>
+                                    <span>OpenCV</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="view-project" data-project="driver-assistance"><i class="fas fa-eye"></i> View Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2499,7 +2537,7 @@
                 </div>
                 
 
-                <div class="tab-content active" id="electrical-engineering">
+                <div class="tab-content" id="electrical-engineering">
                 <div class="skills-categories">
                     
                     <div class="category">
@@ -2804,8 +2842,8 @@
                     <div class="edu-details">
                         <h3>Master's in Industrial Technology for Future Factories</h3>
                         <h4>Mohammed VI Polytechnic University, Benguerir</h4>
-                        <p>2023 - Present </p>
-                        <p>Specialization in Industry 4.0 technologies, digital twins, and sustainable manufacturing processes. Coursework includes advanced automation, industrial IoT,Project management, industrial vision, Quality control ISO 9001, Industrial risk & safety management and machine learning applications in manufacturing.</p>
+                        <p>2023 - 2025 </p>
+                        <p>Specialization in Industry 4.0 technologies, digital twins, Lean manufacturing and sustainable manufacturing processes. Coursework includes advanced automation, industrial IoT,Project management, industrial vision, Quality control ISO 9001, Industrial risk & safety management and machine learning applications in manufacturing.</p>
                     </div>
                 </div>
                 
@@ -2904,7 +2942,7 @@
                         <div class="cert-icon">
                             <i class="fas fa-trophy"></i>
                         </div>
-                        <h3>Exemplary leadership/h3>
+                        <h3>Exemplary leadership</h3>
                         <p>Awarded by the Gambian Students' Association in Morocco for serving as the vice president of the association from 2024-2025 academic year</p>
                     </div>
                     <div class="cert-card">
